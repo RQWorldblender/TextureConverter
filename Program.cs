@@ -35,12 +35,12 @@ namespace TextureConverter
             Console.WriteLine($"file {file.FileInfo.FileName} {file.GetType()}");
 
             if (file is STGenericTexture) {
-                ExportTexture((STGenericTexture)file, $"{directory}{((STGenericTexture)file).Name.Split('.')[0]}{ext}");
+                ExportTexture((STGenericTexture)file, $"{directory}{System.IO.Path.GetFileNameWithoutExtension(((STGenericTexture)file).Name)}{ext}");
             }
             if (file is ITextureContainer)
             {
                 foreach (var tex in ((ITextureContainer)file).TextureList) {
-                    ExportTexture(tex, $"{directory}{tex.Name.Split('.')[0]}{ext}");
+                    ExportTexture(tex, $"{directory}{System.IO.Path.GetFileNameWithoutExtension(tex.Name)}{ext}");
                 }
             }
 
